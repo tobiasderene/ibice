@@ -1,6 +1,6 @@
 /* Sección Principal */
 .benefits-section {
-  padding: 6rem 2rem;
+  padding: 6rem 6rem;
   background-color: #FFFFFF;
 }
 
@@ -42,6 +42,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
+  margin-bottom: 4rem;
 }
 
 @media (min-width: 768px) {
