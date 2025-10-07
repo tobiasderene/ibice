@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Products.css';
 
-export default function ServicesSection() {
+export default function ServicesSection({ id }) {
   const [openService, setOpenService] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -83,7 +83,7 @@ export default function ServicesSection() {
   }, [openService]);
 
   return (
-    <section ref={sectionRef} className="services-section">
+    <section ref={sectionRef} className="services-section" id = {id}>
       <div className="services-container">
         <div className={`services-header ${isVisible ? 'visible' : ''}`}>
           <h2>Nuestros Servicios</h2>

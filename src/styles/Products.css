@@ -3,10 +3,13 @@
 /* Sección principal */
 .services-section {
   width: 100%;
-  padding: 8rem 0;
   background-color: #ffffff;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start; /* ya no centramos verticalmente */
+  align-items: center;
+  min-height: 100vh; /* ocupa pantalla completa si querés */
+  padding: 8rem 0;
 }
 
 .services-container {
@@ -18,6 +21,7 @@
   max-height: 1200px; 
   overflow: hidden; /* evita que el contenido excedente se desborde */
 }
+
 
 
 /* Header */

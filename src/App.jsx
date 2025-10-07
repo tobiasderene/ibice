@@ -8,10 +8,10 @@ function App() {
   return (
     <>
       <Header />
-      <Hero />
-      <Benefits />
-      <Products />
-      <AboutUs />
+      <Hero id="inicio" />
+      <Benefits id="benefits" />
+      <Products id="productos" />
+      <AboutUs id="contacto" />
     </>
   );
 }

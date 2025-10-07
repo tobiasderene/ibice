@@ -1,12 +1,16 @@
 /* Sección Principal */
 .benefits-section {
-  padding: 6rem 6rem;
+  display: flex;              /* activa flexbox */
+  flex-direction: column;     /* columna para mantener header + grid */
+  justify-content: center;    /* centra verticalmente */
+  align-items: center;        /* centra horizontalmente */
+  min-height: 100vh;          /* al menos el alto de la pantalla */
   background-color: #FFFFFF;
 }
 
 .benefits-container {
   max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 /* Encabezado */

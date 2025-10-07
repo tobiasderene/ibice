@@ -2,7 +2,7 @@ import React from 'react';
 import { Zap, Shield, TrendingUp, Target } from 'lucide-react';
 import '../styles/Benefits.css';
 
-export default function BenefitsSection() {
+export default function BenefitsSection({ id }) {
   const benefits = [
     {
       icon: Zap,
@@ -27,7 +27,8 @@ export default function BenefitsSection() {
   ];
 
   return (
-    <section className="benefits-section">
+    <section className="benefits-section" id = {id}>
+      
       <div className="benefits-container">
         {/* Encabezado */}
         <div className="benefits-header">
