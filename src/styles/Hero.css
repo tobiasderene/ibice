@@ -7,7 +7,6 @@
   background: linear-gradient(135deg, #2B5E73, #0a1128);
 }
 
-
 .hero-placeholder {
   position: absolute;
   top: 0;
@@ -30,6 +29,10 @@
   animation: spin 1s linear infinite;
 }
 
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .hero-background {
   position: absolute;
   top: 0;
@@ -42,7 +45,6 @@
   z-index: 1;
 }
 
-
 /* --- Textos del Hero --- */
 .hero-content {
   position: absolute;
@@ -54,6 +56,12 @@
   text-align: left;
 }
 
+.hero-slogan-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .hero-slogan.first,
 .hero-slogan.second {
   font-family: 'Inter', 'Poppins', 'Manrope', sans-serif;
@@ -63,16 +71,54 @@
   letter-spacing: -1px;
   display: inline-block;
   text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
+/* Animación desde la izquierda */
 .hero-slogan.first {
   font-size: clamp(55px, 7vw, 70px);
   color: #F8F9FA;
+  transform: translateX(-20px);
 }
 
+.hero-slogan.first.visible {
+  animation: slideFromLeft 1s ease forwards;
+}
+
+/* Animación desde la derecha */
 .hero-slogan.second {
   font-size: clamp(55px, 7vw, 70px);
   color: #F8F9FA;
+  transform: translateX(20px);
+}
+
+.hero-slogan.second.visible {
+  animation: slideFromRight 1s ease forwards;
+}
+
+/* Keyframes para la animación desde la izquierda */
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Keyframes para la animación desde la derecha */
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* --- Scroll indicator --- */
@@ -81,4 +127,24 @@
 }
 .wheel {
   background: #D5CBB2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-content {
+    left: 5%;
+    max-width: 90%;
+  }
+  
+  .hero-slogan.first,
+  .hero-slogan.second {
+    font-size: clamp(35px, 8vw, 55px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    left: 5%;
+    max-width: 90%;
+  }
 }
