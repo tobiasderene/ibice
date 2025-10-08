@@ -41,7 +41,7 @@ export default function Header() {
         {/* Menú desktop */}
         <nav className="nav desktop-nav">
           <a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}>Inicio</a>
-          <a href="#productos" onClick={(e) => { e.preventDefault(); scrollToSection('productos'); }}>Productos</a>
+          <a href="#productos" onClick={(e) => { e.preventDefault(); scrollToSection('productos'); }}>Servicios</a>
           <a href="#benefits" onClick={(e) => { e.preventDefault(); scrollToSection('benefits'); }}>Beneficios</a>
           <a href="#contacto" onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}>Sobre Nosotros</a>
         </nav>
