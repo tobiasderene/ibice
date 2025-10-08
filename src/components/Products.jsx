@@ -44,7 +44,7 @@ export default function ServicesSection({ id }) {
       className="services-section"
       id={id}
       style={{
-        backgroundImage: `url("/assets/decor-lines.svg"), linear-gradient(180deg, #EAF2EE 0%, #D5CBB2 100%)`,
+        backgroundImage: `url("/assets/decor-lines.svg"), linear-gradient(180deg, #ffffffff 30%, #2B5E73 100%)`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: '300% 300%', /* lo agrandamos */
         backgroundPosition: 'center', /* centramos para que abarque más */
