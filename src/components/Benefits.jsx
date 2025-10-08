@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Zap, Shield, TrendingUp, Target } from 'lucide-react';
 import '../styles/Benefits.css';
 
 export default function BenefitsSection({ id }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+  const cardsRef = useRef([]);
+
   const benefits = [
     {
       icon: Zap,
@@ -26,15 +30,37 @@ export default function BenefitsSection({ id }) {
     }
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          setIsVisible(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            cardsRef.current.forEach((card, index) => {
+              if (card) {
+                setTimeout(() => {
+                  card.classList.add('card-visible');
+                }, index * 120); // ← Delay escalonado
+              }
+            });
+          } else {
+            cardsRef.current.forEach(card => card && card.classList.remove('card-visible'));
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="benefits-section" id = {id}>
-      
+    <section className="benefits-section" id={id} ref={sectionRef}>
       <div className="benefits-container">
         {/* Encabezado */}
-        <div className="benefits-header">
-          <h2 className="benefits-title">
-            Por qué elegir Ibice Solutions
-          </h2>
+        <div className={`benefits-header ${isVisible ? 'visible' : ''}`}>
+          <h2 className="benefits-title">Por qué elegir Ibice Solutions</h2>
           <div className="benefits-accent-line"></div>
           <p className="benefits-subtitle">
             Tecnología clara, procesos seguros y acompañamiento real
@@ -46,15 +72,15 @@ export default function BenefitsSection({ id }) {
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
-              <div key={index} className="benefit-card">
+              <div
+                key={index}
+                ref={el => (cardsRef.current[index] = el)} // ← Agregado ref
+                className="benefit-card"
+              >
                 <div className="benefit-card-content">
                   <Icon className="benefit-icon" strokeWidth={1.5} />
-                  <h3 className="benefit-card-title">
-                    {benefit.title}
-                  </h3>
-                  <p className="benefit-card-description">
-                    {benefit.description}
-                  </p>
+                  <h3 className="benefit-card-title">{benefit.title}</h3>
+                  <p className="benefit-card-description">{benefit.description}</p>
                 </div>
               </div>
             );

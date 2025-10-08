@@ -28,19 +28,16 @@ export default function Hero({ id }) {
     img.onload = () => setLoaded(true);
   }, []);
 
-  const maxScroll = window.innerHeight * 0.8;
-  const blurAmount = Math.min((scrollY / maxScroll) * 10, 10);
-  const opacity = Math.max(1 - scrollY / maxScroll, 0);
+  // ← ELIMINADAS estas líneas:
+  // const maxScroll = window.innerHeight * 0.8;
+  // const blurAmount = Math.min((scrollY / maxScroll) * 10, 10);
+  // const opacity = Math.max(1 - scrollY / maxScroll, 0);
 
   return (
     <div
       id={id}
       className={`hero-parallax ${loaded ? 'loaded' : ''}`}
-      style={{
-        filter: `blur(${blurAmount}px)`,
-        opacity: loaded ? opacity : 1,
-        transition: 'filter 0.2s ease-out, opacity 0.5s ease-out',
-      }}
+      // ← QUITADOS los estilos inline de blur y opacity
     >
       {!loaded && <div className="hero-placeholder"><div className="spinner" /></div>}
 

@@ -9,8 +9,8 @@ function App() {
     <>
       <Header />
       <Hero id="inicio" />
-      <Benefits id="benefits" />
       <Products id="productos" />
+      <Benefits id="benefits" />
       <AboutUs id="contacto" />
     </>
   );

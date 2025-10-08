@@ -27,8 +27,8 @@ export default function Header() {
 
         <nav className="nav">
           <a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}>Inicio</a>
-          <a href="#benefits" onClick={(e) => { e.preventDefault(); scrollToSection('benefits'); }}>Beneficios</a>
           <a href="#productos" onClick={(e) => { e.preventDefault(); scrollToSection('productos'); }}>Productos</a>
+          <a href="#benefits" onClick={(e) => { e.preventDefault(); scrollToSection('benefits'); }}>Beneficios</a>
           <a href="#contacto" onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}>Sobre Nosotros</a>
         </nav>
 

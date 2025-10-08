@@ -2,148 +2,78 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Products.css';
 
 export default function ServicesSection({ id }) {
-  const [openService, setOpenService] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
-  const contentRefs = useRef([]);
+  const cardsRef = useRef([]);
 
   const services = [
-    {
-      id: 1,
-      title: "Software Factory",
-      shortDesc: "Desarrollos ágiles, mantenibles y escalables",
-      fullDesc: "Creamos soluciones de software personalizadas que se adaptan perfectamente a las necesidades de tu negocio. Nuestro equipo trabaja con metodologías ágiles para garantizar entregas rápidas y de alta calidad. Desde aplicaciones web hasta sistemas complejos, nos enfocamos en código limpio, arquitecturas escalables y mantenimiento a largo plazo.",
-      features: ["Desarrollo ágil", "Código escalable", "Mantenimiento continuo"],
-      image: "/images/software-factory.jpg"
-    },
-    {
-      id: 2,
-      title: "Business Intelligence",
-      shortDesc: "Transformamos tus datos en decisiones claras",
-      fullDesc: "Convertimos el caos de datos en información estratégica que impulsa el crecimiento de tu empresa. Implementamos pipelines de datos robustos, creamos dashboards interactivos y aplicamos análisis avanzados para que puedas tomar decisiones basadas en evidencia real.",
-      features: ["Análisis avanzado", "Dashboards interactivos", "Data pipelines"],
-      image: "/images/business-intelligence.jpg"
-    },
-    {
-      id: 3,
-      title: "Web Development",
-      shortDesc: "Sitios web rápidos y confiables",
-      fullDesc: "Diseñamos y desarrollamos experiencias web modernas que cautivan a tus usuarios y convierten visitantes en clientes. Sitios de alto rendimiento, optimizados para SEO y completamente responsivos.",
-      features: ["Performance optimizado", "SEO friendly", "Diseño responsivo"],
-      image: "/images/web-development.jpg"
-    }
+    { id: 1, title: "Software Factory", image: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?w=800&q=80" },
+    { id: 2, title: "Business Intelligence", image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
+    { id: 3, title: "Web Development", image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80" },
+    { id: 4, title: "Mobile Apps", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" }
   ];
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && setIsVisible(true)),
+      entries => {
+        entries.forEach(entry => {
+          setIsVisible(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            cardsRef.current.forEach((card, index) => {
+              if (card) {
+                setTimeout(() => {
+                  card.classList.add('card-visible');
+                }, index * 120);
+              }
+            });
+          } else {
+            cardsRef.current.forEach(card => card && card.classList.remove('card-visible'));
+          }
+        });
+      },
       { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', checkMobile);
-    };
+    return () => observer.disconnect();
   }, []);
 
-  // Espera medio segundo si ya hay uno abierto
-  const handleServiceInteraction = (id) => {
-    if (openService === id) {
-      setOpenService(null);
-      return;
-    }
-    if (openService !== null) {
-      setOpenService(null);
-      setTimeout(() => setOpenService(id), 500);
-    } else {
-      setOpenService(id);
-    }
-  };
-
-  // Control dinámico de altura
-  useEffect(() => {
-    contentRefs.current.forEach((ref, index) => {
-      if (!ref) return;
-      if (openService === services[index].id) {
-        const fullHeight = ref.scrollHeight;
-        ref.style.height = `${fullHeight}px`;
-        ref.style.opacity = 1;
-      } else {
-        ref.style.height = "0px";
-        ref.style.opacity = 0;
-      }
-    });
-  }, [openService]);
-
   return (
-    <section ref={sectionRef} className="services-section" id = {id}>
+    <section
+      ref={sectionRef}
+      className="services-section"
+      id={id}
+      style={{
+        backgroundImage: `url("/assets/decor-lines.svg"), linear-gradient(180deg, #EAF2EE 0%, #D5CBB2 100%)`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '300% 300%', /* lo agrandamos */
+        backgroundPosition: 'center', /* centramos para que abarque más */
+      }}
+    >
       <div className="services-container">
         <div className={`services-header ${isVisible ? 'visible' : ''}`}>
-          <h2>Nuestros Servicios</h2>
-          <p>Soluciones tecnológicas diseñadas para impulsar tu negocio</p>
+          <h2 className="services-title">Nuestros Servicios</h2>
+          <p className="services-subtitle">
+            Soluciones tecnológicas diseñadas para impulsar tu negocio
+          </p>
         </div>
 
-        <div className={`services-grid ${isMobile ? 'mobile' : 'desktop'}`}>
-          {services.map((service, index) => {
-            const isOpen = openService === service.id;
-            return (
-              <div
-                key={service.id}
-                className={`service-card ${isOpen ? 'open' : ''} ${isVisible ? 'visible' : ''}`}
-                style={{ transitionDelay: `${index * 0.1}s` }}
-                onMouseEnter={() => !isMobile && handleServiceInteraction(service.id)}
-                onMouseLeave={() => !isMobile && setOpenService(null)}
-                onClick={() => isMobile && handleServiceInteraction(service.id)}
-              >
-                <div className="service-header">
-                  <div className="service-text">
-                    <h3 className={isOpen ? 'open' : ''}>{service.title}</h3>
-                    <p>{service.shortDesc}</p>
-                  </div>
-                  {isMobile && (
-                    <div className={`service-toggle-icon ${isOpen ? 'open' : ''}`}>
-                      <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" stroke="currentColor">
-                        <path d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
-
-                {/* Contenido expandible */}
-                <div
-                  ref={(el) => (contentRefs.current[index] = el)}
-                  className="service-content"
-                  style={{
-                    height: '0px',
-                    overflow: 'hidden',
-                    opacity: 0,
-                    transition: 'height 0.5s ease, opacity 0.5s ease',
-                  }}
-                >
-                  <div className="service-content-inner">
-                    <div className="service-details">
-                      <p>{service.fullDesc}</p>
-                      <div className="service-features">
-                        {service.features.map((feat, idx) => (
-                          <span key={idx} className="feature-badge">{feat}</span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className={`service-image-wrapper ${isOpen ? 'visible' : ''}`}>
-                      <img src={service.image} alt={service.title} className="service-image" />
-                    </div>
-                  </div>
-                </div>
+        <div className="services-grid">
+          {services.map((service, index) => (
+            <div
+              key={service.id}
+              ref={el => (cardsRef.current[index] = el)}
+              className="service-card"
+            >
+              <div className="service-image-wrapper">
+                <img src={service.image} alt={service.title} className="service-image" />
               </div>
-            );
-          })}
+
+              <div className="service-overlay" />
+              <h3 className="service-title">{service.title}</h3>
+              <div className="decorative-line" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
