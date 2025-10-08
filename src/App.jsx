@@ -11,7 +11,6 @@ function App() {
       <Hero id="inicio" />
       <Products id="productos" />
       <Benefits id="benefits" />
-      <AboutUs id="contacto" />
     </>
   );
 }

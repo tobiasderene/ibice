@@ -53,6 +53,7 @@
   transform: translateY(-50%);
   z-index: 3;
   max-width: 800px;
+  width: calc(100% - 16%); /* Previene desbordamiento horizontal */
   text-align: left;
 }
 
@@ -60,6 +61,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  overflow: hidden; /* Previene desbordamiento */
 }
 
 .hero-slogan.first,
@@ -73,11 +75,13 @@
   text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
   opacity: 0;
   transition: opacity 0.5s ease;
+  word-wrap: break-word; /* Rompe palabras largas si es necesario */
+  overflow-wrap: break-word;
 }
 
 /* Animación desde la izquierda */
 .hero-slogan.first {
-  font-size: clamp(55px, 7vw, 70px);
+  font-size: clamp(35px, 7vw, 70px);
   color: #F8F9FA;
   transform: translateX(-20px);
 }
@@ -88,7 +92,7 @@
 
 /* Animación desde la derecha */
 .hero-slogan.second {
-  font-size: clamp(55px, 7vw, 70px);
+  font-size: clamp(35px, 7vw, 70px);
   color: #F8F9FA;
   transform: translateX(20px);
 }
@@ -133,18 +137,28 @@
 @media (max-width: 768px) {
   .hero-content {
     left: 5%;
-    max-width: 90%;
+    right: 5%; /* Añade margen derecho */
+    width: calc(100% - 10%); /* Ajusta el ancho total */
+    max-width: none;
   }
   
   .hero-slogan.first,
   .hero-slogan.second {
-    font-size: clamp(35px, 8vw, 55px);
+    font-size: clamp(28px, 8vw, 45px);
+    letter-spacing: -0.5px; /* Reduce el espaciado en mobile */
   }
 }
 
 @media (max-width: 480px) {
   .hero-content {
-    left: 5%;
-    max-width: 90%;
+    left: 4%;
+    right: 4%;
+    width: calc(100% - 8%);
+  }
+  
+  .hero-slogan.first,
+  .hero-slogan.second {
+    font-size: clamp(24px, 9vw, 35px);
+    line-height: 1.15; /* Aumenta un poco el line-height para mejor legibilidad */
   }
 }

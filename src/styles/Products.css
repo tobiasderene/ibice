@@ -1,7 +1,7 @@
 /* --- SECCIÓN DE SERVICIOS --- */
 .services-section::before {
   content: '';
-  position: absolute; /* ← Cambiado de fixed a absolute */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -20,22 +20,28 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  position: relative; /* ← Ya lo tenías */
+  justify-content: center;
+  position: relative;
   transition: background 0.8s ease-in-out;
   overflow: hidden;
   background: rgba(39, 43, 114, 0.3);
+  padding: 4rem 0;
+  box-sizing: border-box;
 }
 
 .services-container {
-  width: calc(100% - 2rem);
-  margin: 0 5rem;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 5rem;
   position: relative;
-  z-index: 1; /* ← Asegura que el contenido esté arriba */
+  z-index: 1;
+  box-sizing: border-box;
 }
 
 /* Header */
 .services-header {
-  text-align: left;
+  text-align: center;
+  margin-bottom: 3rem;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
@@ -47,14 +53,14 @@
 }
 
 .services-title {
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   color: #2B5E73;
   margin-bottom: 0.5rem;
 }
 
 .services-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   color: #3C6041;
   font-weight: 400;
 }
@@ -130,8 +136,9 @@
   position: absolute;
   bottom: 2rem;
   left: 2rem;
+  right: 2rem;
   color: #F8F9FA;
-  font-size: 1.8rem;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
   font-weight: 700;
   z-index: 3;
   text-shadow: 0 2px 15px rgba(0,0,0,0.5);
@@ -160,22 +167,92 @@
 }
 
 /* Responsividad */
+@media (max-width: 1024px) {
+  .services-container {
+    padding: 0 3rem;
+  }
+  
+  .services-grid {
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .services-section {
+    padding: 3rem 0;
+  }
+  
+  .services-container {
+    padding: 0 1.5rem;
+  }
+  
+  .services-header {
+    margin-bottom: 2rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
   .service-card {
     aspect-ratio: 16/9;
+  }
+  
+  .service-title {
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+  
+  .decorative-line {
+    bottom: 1rem;
+    left: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
+  .services-section {
+    padding: 2rem 0;
+  }
+  
+  .services-container {
+    padding: 0 1rem;
+    width: 100%;
+  }
+  
+  .services-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .services-grid {
+    gap: 1rem;
+  }
+  
   .service-card {
     aspect-ratio: 1/1;
+    border-radius: 15px;
   }
-
-  .services-title {
-    font-size: 2.2rem;
+  
+  .service-title {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
   }
+  
+  .decorative-line {
+    bottom: 0.75rem;
+    left: 1rem;
+  }
+}
 
-  .services-subtitle {
-    font-size: 1rem;
+@media (max-width: 380px) {
+  .services-container {
+    padding: 0 0.75rem;
+  }
+  
+  .services-grid {
+    gap: 0.75rem;
   }
 }
