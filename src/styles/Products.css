@@ -20,7 +20,6 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
   position: relative;
   transition: background 0.8s ease-in-out;
   overflow: hidden;
@@ -30,9 +29,8 @@
 }
 
 .services-container {
-  width: 100%;
-  max-width: 1400px;
-  padding: 0 5rem;
+  width: calc(100% - 10rem);
+  margin: 0 5rem;
   position: relative;
   z-index: 1;
   box-sizing: border-box;
@@ -40,7 +38,7 @@
 
 /* Header */
 .services-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   opacity: 0;
   transform: translateY(40px);
@@ -53,14 +51,14 @@
 }
 
 .services-title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 3rem;
   font-weight: 700;
   color: #2B5E73;
   margin-bottom: 0.5rem;
 }
 
 .services-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-size: 1.2rem;
   color: #3C6041;
   font-weight: 400;
 }
@@ -138,7 +136,7 @@
   left: 2rem;
   right: 2rem;
   color: #F8F9FA;
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-size: 1.8rem;
   font-weight: 700;
   z-index: 3;
   text-shadow: 0 2px 15px rgba(0,0,0,0.5);
@@ -169,7 +167,8 @@
 /* Responsividad */
 @media (max-width: 1024px) {
   .services-container {
-    padding: 0 3rem;
+    width: calc(100% - 6rem);
+    margin: 0 3rem;
   }
   
   .services-grid {
@@ -180,14 +179,25 @@
 @media (max-width: 768px) {
   .services-section {
     padding: 3rem 0;
+    justify-content: center;
   }
   
   .services-container {
-    padding: 0 1.5rem;
+    width: calc(100% - 3rem);
+    margin: 0 1.5rem;
   }
   
   .services-header {
+    text-align: center;
     margin-bottom: 2rem;
+  }
+  
+  .services-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+  
+  .services-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
   }
   
   .services-grid {
@@ -203,6 +213,7 @@
     bottom: 1.5rem;
     left: 1.5rem;
     right: 1.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
   }
   
   .decorative-line {
@@ -217,12 +228,20 @@
   }
   
   .services-container {
-    padding: 0 1rem;
-    width: 100%;
+    width: calc(100% - 2rem);
+    margin: 0 1rem;
   }
   
   .services-header {
     margin-bottom: 1.5rem;
+  }
+  
+  .services-title {
+    font-size: 2rem;
+  }
+  
+  .services-subtitle {
+    font-size: 1rem;
   }
   
   .services-grid {
@@ -249,7 +268,8 @@
 
 @media (max-width: 380px) {
   .services-container {
-    padding: 0 0.75rem;
+    width: calc(100% - 1.5rem);
+    margin: 0 0.75rem;
   }
   
   .services-grid {
