@@ -59,7 +59,7 @@
 }
 
 .nav a:hover {
-  color: #D5CBB2;
+  color: #3C6041;
 }
 
 .header.scrolled .nav a:hover {
@@ -73,7 +73,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: #D5CBB2;
+  background: #3C6041;
   transition: width 0.3s ease;
 }
 

@@ -51,15 +51,23 @@
 }
 
 .services-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #2B5E73;
   margin-bottom: 0.5rem;
 }
 
+.services-accent-line {
+  width: 60px;
+  height: 4px;
+  background-color: #2B5E73;
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
 .services-subtitle {
   font-size: 1.2rem;
-  color: #3C6041;
+  color: #4f4f4f;
   font-weight: 400;
 }
 
@@ -138,7 +146,7 @@
   left: 2rem;
   right: 2rem;
   color: #F8F9FA;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   z-index: 3;
   text-shadow: 0 2px 15px rgba(0,0,0,0.5);

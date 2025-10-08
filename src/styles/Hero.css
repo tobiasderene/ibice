@@ -81,7 +81,7 @@
 
 /* Animación desde la izquierda */
 .hero-slogan.first {
-  font-size: clamp(35px, 7vw, 70px);
+  font-size: clamp(15px, 7vw, 55px);
   color: #F8F9FA;
   transform: translateX(-20px);
 }
@@ -92,7 +92,7 @@
 
 /* Animación desde la derecha */
 .hero-slogan.second {
-  font-size: clamp(35px, 7vw, 70px);
+  font-size: clamp(15px, 7vw, 55px);
   color: #F8F9FA;
   transform: translateX(20px);
 }

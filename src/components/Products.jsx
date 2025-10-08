@@ -53,6 +53,7 @@ export default function ServicesSection({ id }) {
       <div className="services-container">
         <div className={`services-header ${isVisible ? 'visible' : ''}`}>
           <h2 className="services-title">Nuestros Servicios</h2>
+          <div className="benefits-accent-line"></div>
           <p className="services-subtitle">
             Soluciones tecnológicas diseñadas para impulsar tu negocio
           </p>
