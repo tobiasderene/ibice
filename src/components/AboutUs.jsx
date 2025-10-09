@@ -19,12 +19,15 @@ const AboutSection = () => {
       });
     }, observerOptions);
 
-    if (headerRef.current) observer.observe(headerRef.current);
-    if (contentRef.current) observer.observe(contentRef.current);
+    const headerElement = headerRef.current;
+    const contentElement = contentRef.current;
+
+    if (headerElement) observer.observe(headerElement);
+    if (contentElement) observer.observe(contentElement);
 
     return () => {
-      if (headerRef.current) observer.unobserve(headerRef.current);
-      if (contentRef.current) observer.unobserve(contentRef.current);
+      if (headerElement) observer.unobserve(headerElement);
+      if (contentElement) observer.unobserve(contentElement);
     };
   }, []);
 
