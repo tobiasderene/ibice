@@ -43,7 +43,7 @@ export default function Header() {
           <a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}>Inicio</a>
           <a href="#productos" onClick={(e) => { e.preventDefault(); scrollToSection('productos'); }}>Servicios</a>
           <a href="#benefits" onClick={(e) => { e.preventDefault(); scrollToSection('benefits'); }}>Beneficios</a>
-          <a href="#contacto" onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}>Sobre Nosotros</a>
+          <a href="#aboutus" onClick={(e) => { e.preventDefault(); scrollToSection('aboutus'); }}>Sobre Nosotros</a>
         </nav>
 
         <button className="cta-button desktop-cta">Comenzar</button>
@@ -65,7 +65,7 @@ export default function Header() {
             <a href="#inicio" onClick={(e) => { e.preventDefault(); scrollToSection('inicio'); }}>Inicio</a>
             <a href="#productos" onClick={(e) => { e.preventDefault(); scrollToSection('productos'); }}>Productos</a>
             <a href="#benefits" onClick={(e) => { e.preventDefault(); scrollToSection('benefits'); }}>Beneficios</a>
-            <a href="#contacto" onClick={(e) => { e.preventDefault(); scrollToSection('contacto'); }}>Sobre Nosotros</a>
+            <a href="#aboutus" onClick={(e) => { e.preventDefault(); scrollToSection('aboutus'); }}>Sobre Nosotros</a>
             <button className="cta-button mobile-cta">Comenzar</button>
           </nav>
         </div>
