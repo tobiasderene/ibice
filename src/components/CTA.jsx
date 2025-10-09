@@ -14,7 +14,8 @@ export default function CTAParallax({ id }) {
     const img = new Image();
     img.src = mountainImg;
     img.onload = () => setLoaded(true);
-  }, []);
+  }, [mountainImg]);
+
 
   // show content después de cargar
   useEffect(() => {
