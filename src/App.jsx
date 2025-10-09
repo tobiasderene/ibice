@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Benefits from './components/Benefits';
 import Products from './components/Products';
 import AboutUs from './components/AboutUs';
+import CTA from './components/CTA';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Products id="productos" />
       <Benefits id="benefits" />
       <AboutUs id="aboutus" />
+      <CTA id="cta" />
     </>
   );
 }

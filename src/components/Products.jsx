@@ -43,17 +43,11 @@ export default function ServicesSection({ id }) {
       ref={sectionRef}
       className="services-section"
       id={id}
-      style={{
-        backgroundImage: `url("/assets/decor-lines.svg"), linear-gradient(180deg, #ffffffff 30%, #2B5E73 100%)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '300% 300%', /* lo agrandamos */
-        backgroundPosition: 'center', /* centramos para que abarque más */
-      }}
     >
       <div className="services-container">
         <div className={`services-header ${isVisible ? 'visible' : ''}`}>
           <h2 className="services-title">Nuestros Servicios</h2>
-          <div className="benefits-accent-line"></div>
+          <div className="services-accent-line"></div>
           <p className="services-subtitle">
             Soluciones tecnológicas diseñadas para impulsar tu negocio
           </p>

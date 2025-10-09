@@ -22,9 +22,9 @@
   align-items: center;
   position: relative; /* ← Agregar esto si no lo tenés */
   background: linear-gradient(
-    to bottom,
-    rgba(248, 249, 250, 0.8) 0%,
-    rgba(248, 249, 250, 0.95) 100%
+    to top,
+    rgba(248, 249, 250, 0.8) 20%,
+    #2B5E73 90%
   );
   transition: background 0.8s ease-in-out;
 }
@@ -52,21 +52,26 @@
 .benefits-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #2B5E73;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .benefits-accent-line {
   width: 60px;
   height: 4px;
-  background-color: #2B5E73;
+  background-color: #fcfcfc;
   margin-bottom: 1rem;
   border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.benefits-header:hover .benefits-accent-line {
+  width: 80px;
 }
 
 .benefits-subtitle {
   font-size: 1.2rem;
-  color: #4f4f4f;
+  color: #ffffff;
   font-weight: 400;
 }
 
