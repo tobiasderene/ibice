@@ -18,3 +18,12 @@ body::before {
   min-height: 100%;
   overflow-x: hidden;
 }
+
+.cta-parallax,
+.services-section,
+.about-section,
+.benefits-section {
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+  
