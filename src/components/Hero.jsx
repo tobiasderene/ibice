@@ -28,11 +28,6 @@ export default function Hero({ id }) {
     img.onload = () => setLoaded(true);
   }, []);
 
-  // ← ELIMINADAS estas líneas:
-  // const maxScroll = window.innerHeight * 0.8;
-  // const blurAmount = Math.min((scrollY / maxScroll) * 10, 10);
-  // const opacity = Math.max(1 - scrollY / maxScroll, 0);
-
   return (
     <div
       id={id}
@@ -44,7 +39,7 @@ export default function Hero({ id }) {
       <div
         className="hero-background"
         style={{
-          transform: `translateY(${scrollY * 0.3}px) translateX(${scrollY * 0.02}px)`,
+          transform: `translateY(${scrollY * 0.3}px)`,
           height: `${120 + scrollY * 0.05}%`,
           backgroundImage: loaded ? `url(${ibicesImg})` : 'none',
           backgroundSize: 'cover',
