@@ -43,7 +43,7 @@
 /* Fondo con efecto parallax */
 .hero-cta-background {
   position: absolute;
-  top: -15%;
+  top: -3%;
   left: 0;
   width: 100%;
   height: 120%;
