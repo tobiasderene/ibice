@@ -63,7 +63,7 @@ const AboutAccordion = () => {
   ];
 
   return (
-    <section className="about-section">
+    <section id ="aboutus" className="about-section">
       <div className="about-container">
         <div className={`about-header ${isVisible ? 'visible' : ''}`}>
           <h2 className="about-title">Sobre Nosotros</h2>

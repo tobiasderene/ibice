@@ -64,8 +64,16 @@ export default function Header() {
           <a href="#aboutus" onClick={(e) => { e.preventDefault(); scrollToSection('aboutus'); }}>Sobre Nosotros</a>
         </nav>
 
-        <button className="cta-button desktop-cta">Comenzar</button>
-
+        <button 
+          className="cta-button desktop-cta" 
+          onClick={(e) => { 
+            e.preventDefault(); 
+            scrollToSection('cta'); 
+          }}
+        >
+          Comenzar
+        </button>
+        
         {/* Hamburger button */}
         <button 
           className={`hamburger ${menuOpen ? 'open' : ''} ${scrolled ? 'scrolled' : ''}`}

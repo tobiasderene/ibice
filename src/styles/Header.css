@@ -100,21 +100,17 @@
 }
 
 .header.scrolled .cta-button {
-  background: #2B5E73;
-  border-color: #2B5E73;
-  color: #F8F9FA;
+  background: linear-gradient(135deg, #3C6041, #2B5E73);
 }
 
 .cta-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(43, 94, 115, 0.3);
-  background: #3C6041;
-  border-color: #3C6041;
+  background: linear-gradient(135deg, #2B5E73, #3C6041);
 }
 
 .header.scrolled .cta-button:hover {
-  background: #3C6041;
-  border-color: #3C6041;
+  background: linear-gradient(135deg, #2B5E73, #3C6041);
 }
 
 /* Hamburger Menu */
