@@ -6,13 +6,31 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+  const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowH = window.innerHeight;
+      const docH = document.body.scrollHeight;
+
+      // Si estás muy arriba
+      if (scrollY < 50) {
+        setScrolled(false);
+        return;
+      }
+
+      // Si estás cerca del final (últimos 200px, por ejemplo)
+      if (scrollY + windowH >= docH - 100) {
+        setScrolled(false);
+        return;
+      }
+
+      // En el medio
+      setScrolled(true);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   const scrollToSection = (id) => {
     const el = document.getElementById(id);

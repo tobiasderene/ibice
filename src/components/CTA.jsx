@@ -39,7 +39,7 @@ export default function CTAParallax({ id }) {
           const distanceFromCenter = sectionCenter - windowH / 2; // +/- px
           const normalized = distanceFromCenter / windowH; // aprox -1 .. 1
           const clamped = Math.max(-1, Math.min(1, normalized));
-          const MAX_PX = 40; // ajuste: cuánto querés que se mueva como máximo
+          const MAX_PX = windowH * 0.3; // 10% de la altura visible
           // movemos el background en sentido OPUESTO para que no "desaparezca"
           setParallax(-clamped * MAX_PX);
           ticking = false;
