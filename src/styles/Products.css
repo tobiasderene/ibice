@@ -33,7 +33,7 @@
 }
 
 .services-container {
-  width: calc(100% - 10rem);
+  width: calc(100% - 2rem);  /* ← Cambia de 10rem a 2rem */
   margin: 0 5rem;
   position: relative;
   z-index: 1;
