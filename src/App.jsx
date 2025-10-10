@@ -4,6 +4,7 @@ import Benefits from './components/Benefits';
 import Products from './components/Products';
 import AboutUs from './components/AboutUs';
 import CTA from './components/CTA';
+import './App.css'
 
 function App() {
   return (

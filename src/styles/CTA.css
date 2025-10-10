@@ -253,3 +253,28 @@
     gap: 1.5rem;
   }
 }
+
+/* --- FIX: eliminar espacio blanco en mobile y cubrir con imagen --- */
+
+/* Evita que el body o el html generen scroll adicional */
+html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Asegura que la sección ocupe exactamente el alto de la pantalla sin “estirarse” */
+.cta-parallax {
+  min-height: 100svh; /* usa svh para un cálculo más preciso del alto en mobile */
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* Ajuste del fondo para que nunca deje huecos arriba o abajo */
+.cta-background {
+  top: 0;
+  height: 100%;
+  transform: translateY(0) !important; /* fuerza que la imagen no se salga del viewport */
+  background-size: cover;
+  background-position: center center;
+}

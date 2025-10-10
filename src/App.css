@@ -1,0 +1,20 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none; /* evita el estiramiento al final del scroll */
+  background-color: #000; /* color de fondo base */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #2B5E73, #0a1128);
+  z-index: -999;
+}
+
+#root {
+  min-height: 100%;
+  overflow-x: hidden;
+}
