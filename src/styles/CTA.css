@@ -1,37 +1,33 @@
-/* --- CTA PARALLAX --- */
-.cta-parallax {
+/* --- HERO CTA PARALLAX --- */
+.hero-cta-parallax {
   position: relative;
   width: 100%;
-  min-height: 100svh; /* altura exacta viewport en mobile */
+  min-height: 100vh;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(135deg, #0a1128, #2B5E73);
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, #0a1128, #2B5E73);
   transition: background 0.5s ease;
 }
 
-/* Cuando la imagen ya cargó, quitamos el gradiente para que se vea la foto */
-.cta-parallax.loaded {
+.hero-cta-parallax.loaded {
   background: none;
 }
 
 /* Placeholder mientras carga */
-.cta-placeholder {
+.hero-cta-placeholder {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #2B5E73, #3C6041);
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, #2B5E73, #3C6041);
   z-index: 10;
 }
 
-.cta-placeholder .spinner {
+.hero-cta-placeholder .spinner {
   width: 50px;
   height: 50px;
   border: 5px solid rgba(255, 255, 255, 0.3);
@@ -45,37 +41,33 @@
 }
 
 /* Fondo con efecto parallax */
-.cta-background {
+.hero-cta-background {
   position: absolute;
-  top: 0;
+  top: -15%;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120%;
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
-  opacity: 0;
-  transition: opacity 0.45s ease, transform 0.25s ease-out;
   will-change: transform;
+  transition: transform 0.2s ease-out, opacity 0.6s ease;
   pointer-events: none;
-  transform: translateY(0) !important; /* fuerza que la imagen no se salga */
 }
 
-/* Overlay para oscurecer un poco la imagen */
-.cta-overlay {
+/* Overlay */
+.hero-cta-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 20%;
-  background: rgba(10, 17, 40, 0.75);
   z-index: 2;
 }
 
 /* Contenido centrado */
-.cta-content {
+.hero-cta-content {
   position: relative;
   z-index: 3;
   width: calc(100% - 10rem);
@@ -87,20 +79,18 @@
   gap: 3rem;
   padding: 4rem 0;
   color: #F8F9FA;
-}
-
-/* Textos animados */
-.cta-text {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-.cta-text.visible {
+
+.hero-cta-content.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.cta-title {
+/* Título y texto */
+.hero-cta-title {
   font-family: 'Inter', 'Poppins', 'Manrope', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
@@ -111,7 +101,7 @@
   text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.cta-subtitle {
+.hero-cta-subtitle {
   font-size: clamp(1.125rem, 2vw, 1.5rem);
   color: #F8F9FA;
   margin: 0;
@@ -121,7 +111,7 @@
 }
 
 /* Botones */
-.cta-buttons {
+.hero-cta-buttons {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
@@ -130,12 +120,13 @@
   transform: translateY(30px);
   transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
 }
-.cta-buttons.visible {
+
+.hero-cta-buttons.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.cta-action-button {
+.hero-cta-action-button {
   padding: 1rem 2.5rem;
   font-size: 1.125rem;
   font-weight: 600;
@@ -147,28 +138,37 @@
   letter-spacing: 0.5px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
-.cta-action-button.primary {
+
+.hero-cta-action-button.primary {
+  padding: 0.75rem 1.8rem;
+  font-size: 1rem;
+  border-radius: 35px;
   background: linear-gradient(135deg, #3C6041, #2B5E73);
   color: #F8F9FA;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
-.cta-action-button.primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 25px rgba(60, 96, 65, 0.5);
+
+.hero-cta-action-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(60, 96, 65, 0.5);
   background: linear-gradient(135deg, #2B5E73, #3C6041);
 }
-.cta-action-button.secondary {
+
+.hero-cta-action-button.secondary {
   background: transparent;
   color: #F8F9FA;
   border: 2px solid #F8F9FA;
 }
-.cta-action-button.secondary:hover {
+
+.hero-cta-action-button.secondary:hover {
   background: rgba(248, 249, 250, 0.1);
   transform: translateY(-3px);
   box-shadow: 0 6px 25px rgba(248, 249, 250, 0.3);
 }
 
 /* Info */
-.cta-info {
+.hero-cta-info {
   display: flex;
   justify-content: center;
   gap: 3rem;
@@ -177,24 +177,27 @@
   transform: translateY(30px);
   transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
 }
-.cta-info.visible {
+
+.hero-cta-info.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.info-item {
+.hero-info-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 }
-.info-number {
+
+.hero-info-number {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   color: #D5CBB2;
   text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
 }
-.info-label {
+
+.hero-info-label {
   font-size: clamp(0.875rem, 1.5vw, 1rem);
   color: #F8F9FA;
   text-transform: uppercase;
@@ -205,61 +208,25 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .cta-content {
-    width: calc(100% - 6rem);
-    gap: 2.5rem;
-  }
-  .cta-info {
-    gap: 2rem;
-  }
-}
-@media (max-width: 768px) {
-  .cta-content {
-    width: calc(100% - 3rem);
-    gap: 2rem;
-    padding: 3rem 0;
-  }
-  .cta-title {
-    font-size: clamp(2rem, 8vw, 3rem);
-  }
-  .cta-subtitle {
-    font-size: clamp(1rem, 3vw, 1.25rem);
-  }
-  .cta-buttons {
-    gap: 1rem;
-  }
-  .cta-action-button {
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-  }
-  .cta-info {
-    gap: 1.5rem;
-  }
-}
-@media (max-width: 480px) {
-  .cta-content {
-    width: calc(100% - 2rem);
-    gap: 1.5rem;
-    padding: 2rem 0;
-  }
-  .cta-buttons {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-  }
-  .cta-action-button {
-    width: 100%;
-    max-width: 300px;
-  }
-  .cta-info {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+  .hero-cta-content { width: calc(100% - 6rem); gap: 2.5rem; }
+  .hero-cta-info { gap: 2rem; }
 }
 
-/* --- FIX: eliminar espacio blanco en mobile y cubrir con imagen --- */
-html, body {
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
+@media (max-width: 768px) {
+  .hero-cta-content { width: calc(100% - 3rem); gap: 2rem; padding: 3rem 0; }
+  .hero-cta-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .hero-cta-subtitle { font-size: clamp(1rem, 3vw, 1.25rem); }
+  .hero-cta-buttons { gap: 1rem; }
+  .hero-cta-action-button { padding: 0.875rem 2rem; font-size: 1rem; }
+  .hero-cta-info { gap: 1.5rem; }
 }
+
+@media (max-width: 480px) {
+  .hero-cta-content { width: calc(100% - 2rem); gap: 1.5rem; padding: 2rem 0; }
+  .hero-cta-buttons { flex-direction: column; width: 100%; align-items: center; }
+  .hero-cta-action-button { width: 100%; max-width: 300px; }
+  .hero-cta-info { flex-direction: column; gap: 1.5rem; }
+}
+
+/* Fix mobile */
+html, body { overflow-x: hidden; margin: 0; padding: 0; }

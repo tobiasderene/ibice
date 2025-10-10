@@ -32,7 +32,6 @@ export default function Hero({ id }) {
     <div
       id={id}
       className={`hero-parallax ${loaded ? 'loaded' : ''}`}
-      // ← QUITADOS los estilos inline de blur y opacity
     >
       {!loaded && <div className="hero-placeholder"><div className="spinner" /></div>}
 
