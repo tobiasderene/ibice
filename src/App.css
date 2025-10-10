@@ -3,7 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none; /* evita el estiramiento al final del scroll */
-  background-color: #000; /* color de fondo base */
+  background-color: transparent; /* color de fondo base */
 }
 
 body::before {
