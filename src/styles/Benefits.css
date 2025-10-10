@@ -31,7 +31,7 @@
 
 .benefits-container {
   width: calc(100% - 2rem);
-  margin: 0 5rem;
+  margin: 2rem 5rem;
   position: relative; /* ← Ya lo tenías implícito, pero asegúrate */
   z-index: 1;
 }

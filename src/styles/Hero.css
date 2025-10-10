@@ -52,7 +52,7 @@
 /* --- Textos del Hero --- */
 .hero-content {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 8%;
   transform: translateY(-50%);
   z-index: 3;
@@ -140,12 +140,13 @@
 /* Responsive */
 @media (max-width: 768px) {
   .hero-content {
-    left: 5%;
-    right: 5%; /* Añade margen derecho */
+    left: 50%;
+    right: 50%; /* Añade margen derecho */
     width: calc(100% - 10%); /* Ajusta el ancho total */
     max-width: none;
+    text-align: center;
   }
-  
+
   .hero-slogan.first,
   .hero-slogan.second {
     font-size: clamp(28px, 8vw, 45px);

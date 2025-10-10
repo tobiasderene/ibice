@@ -1,4 +1,4 @@
-/* --- Mantiene tu fondo y estructura original --- */
+/* --- SECCIÓN ABOUT --- */
 .about-section::before {
   content: '';
   position: absolute;
@@ -17,8 +17,7 @@
 
 .about-section {
   width: 100%;
-  min-height: 100svh; /* ocupa todo el viewport sin huecos */
-  height: 100svh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
@@ -28,26 +27,22 @@
     rgba(248, 249, 250, 0.95) 100%
   );
   transition: background 0.8s ease-in-out;
-  padding: 4rem 0;
-  box-sizing: border-box;
-  overflow: hidden;
 }
 
 .about-container {
-  width: calc(100% - 2rem);  /* ← Cambia de 10rem a 2rem */
+  width: calc(100% - 2rem);
   margin: 0 5rem;
   position: relative;
   z-index: 1;
-  box-sizing: border-box;
+  margin-bottom: 2rem;
 }
 
 /* --- Header animado --- */
 .about-header {
   text-align: left;
-  margin-bottom: 3rem;
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 1s ease, transform 1s ease;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .about-header.visible {
@@ -89,7 +84,7 @@
   overflow: hidden;
   opacity: 0;
   transform: translateY(50px);
-  transition: all 0.5s ease;
+  transition: transform 1s ease, box-shadow 0.8s ease, opacity 1s ease;
 }
 
 .accordion-item.card-visible {
@@ -227,11 +222,14 @@
   transition-delay: 0.3s;
 }
 
-/* --- Responsivo --- */
+/* --- Responsividad --- */
 @media (max-width: 1024px) {
   .about-container {
-    width: calc(100% - 6rem);
-    margin: 0 3rem;
+    width: calc(100% - 2rem);
+  }
+
+  .about-title {
+    font-size: 2.5rem;
   }
 
   .accordion-header {
@@ -249,22 +247,12 @@
 }
 
 @media (max-width: 768px) {
-  .about-section {
-    padding: 3rem 0;
-  }
-
   .about-container {
-    width: calc(100% - 3rem);
-    margin: 0 1.5rem;
-  }
-
-  .about-header {
-    text-align: center;
-    margin-bottom: 2rem;
+    width: calc(100% - 2rem);
   }
 
   .about-title {
-    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-size: 2rem;
   }
 
   .accordion-header {
@@ -283,13 +271,8 @@
 }
 
 @media (max-width: 480px) {
-  .about-section {
-    padding: 2rem 0;
-  }
-
   .about-container {
     width: calc(100% - 2rem);
-    margin: 0 1rem;
   }
 
   .accordion-header {
