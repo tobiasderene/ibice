@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   min-height: 100svh; /* altura exacta viewport en mobile */
-  height: 100svh;
+  height: 100%;
   overflow: hidden;
   background: linear-gradient(135deg, #0a1128, #2B5E73);
   display: flex;
