@@ -97,12 +97,11 @@ export default function CTAParallax({ id }) {
 
         <div className={`cta-buttons ${showContent ? 'visible' : ''}`}>
           <button className="cta-action-button primary">Comenzar ahora</button>
-          <button className="cta-action-button secondary">Conocer más</button>
         </div>
 
         <div className={`cta-info ${showContent ? 'visible' : ''}`}>
           <div className="info-item">
-            <span className="info-number">+50</span>
+            <span className="info-number">+5</span>
             <span className="info-label">Proyectos completados</span>
           </div>
           <div className="info-item">
