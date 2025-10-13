@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/CTA.css';
 import mountainImage from '../assets/mountain.jpg';
+import PopupCTA from './PopupCTA'; // ← Importa aquí
 
 export default function HeroCTA({ id }) {
   const sectionRef = useRef(null);
+  const popupRef = useRef(null); // ← Crea la ref
   const [loaded, setLoaded] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [parallax, setParallax] = useState(0);
@@ -24,7 +26,7 @@ export default function HeroCTA({ id }) {
     }
   }, [loaded]);
 
-  // scroll -> parallax (requestAnimationFrame para smooth/performance)
+  // scroll -> parallax
   useEffect(() => {
     let ticking = false;
     const handle = () => {
@@ -45,7 +47,7 @@ export default function HeroCTA({ id }) {
       }
     };
 
-    handle(); // init
+    handle();
     window.addEventListener('scroll', handle, { passive: true });
     window.addEventListener('resize', handle);
     return () => {
@@ -55,55 +57,65 @@ export default function HeroCTA({ id }) {
   }, []);
 
   return (
-    <div
-      id={id}
-      ref={sectionRef}
-      className={`hero-cta-parallax ${loaded ? 'loaded' : ''}`}
-    >
-      {!loaded && (
-        <div className="hero-cta-placeholder">
-          <div className="spinner" />
-        </div>
-      )}
-
+    <>
       <div
-        className="hero-cta-background"
-        style={{
-          transform: `translateY(${parallax}px)`,
-          backgroundImage: loaded ? `url(${mountainImg})` : 'none',
-          opacity: loaded ? 1 : 0,
-        }}
-      />
-
-      <div className="hero-cta-overlay" />
-
-      <div className={`hero-cta-content ${showContent ? 'visible' : ''}`}>
-        <div className={`hero-cta-text ${showContent ? 'visible' : ''}`}>
-          <h2 className="hero-cta-title">¿Listo para alcanzar la cima?</h2>
-          <p className="hero-cta-subtitle">
-            Transformá tu negocio con soluciones tecnológicas que realmente funcionan.
-          </p>
-        </div>
-
-        <div className={`hero-cta-buttons ${showContent ? 'visible' : ''}`}>
-          <button className="hero-cta-action-button primary">Hablemos</button>
-        </div>
-
-        <div className={`hero-cta-info ${showContent ? 'visible' : ''}`}>
-          <div className="hero-info-item">
-            <span className="hero-info-number">+5</span>
-            <span className="hero-info-label">Trabajos realizados</span>
+        id={id}
+        ref={sectionRef}
+        className={`hero-cta-parallax ${loaded ? 'loaded' : ''}`}
+      >
+        {!loaded && (
+          <div className="hero-cta-placeholder">
+            <div className="spinner" />
           </div>
-          <div className="hero-info-item">
-            <span className="hero-info-number">100%</span>
-            <span className="hero-info-label">Satisfacción</span>
+        )}
+
+        <div
+          className="hero-cta-background"
+          style={{
+            transform: `translateY(${parallax}px)`,
+            backgroundImage: loaded ? `url(${mountainImg})` : 'none',
+            opacity: loaded ? 1 : 0,
+          }}
+        />
+
+        <div className="hero-cta-overlay" />
+
+        <div className={`hero-cta-content ${showContent ? 'visible' : ''}`}>
+          <div className={`hero-cta-text ${showContent ? 'visible' : ''}`}>
+            <h2 className="hero-cta-title">¿Listo para alcanzar la cima?</h2>
+            <p className="hero-cta-subtitle">
+              Transformá tu negocio con soluciones tecnológicas que realmente funcionan.
+            </p>
           </div>
-          <div className="hero-info-item">
-            <span className="hero-info-number">24/7</span>
-            <span className="hero-info-label">Soporte</span>
+
+          <div className={`hero-cta-buttons ${showContent ? 'visible' : ''}`}>
+            <button 
+              className="hero-cta-action-button primary"
+              onClick={() => popupRef.current?.openPopup()} // ← Abre el popup
+            >
+              Hablemos
+            </button>
+          </div>
+
+          <div className={`hero-cta-info ${showContent ? 'visible' : ''}`}>
+            <div className="hero-info-item">
+              <span className="hero-info-number">+5</span>
+              <span className="hero-info-label">Trabajos realizados</span>
+            </div>
+            <div className="hero-info-item">
+              <span className="hero-info-number">100%</span>
+              <span className="hero-info-label">Satisfacción</span>
+            </div>
+            <div className="hero-info-item">
+              <span className="hero-info-number">24/7</span>
+              <span className="hero-info-label">Soporte</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* ← Renderiza el popup */}
+      <PopupCTA ref={popupRef} />
+    </>
   );
 }
