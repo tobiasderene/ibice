@@ -16,10 +16,10 @@ const PopupCTA = forwardRef((props, ref) => {
   const [submitMessage, setSubmitMessage] = useState('');
 
   const products = [
-    'Producto 1',
-    'Producto 2',
-    'Producto 3',
-    'Producto 4'
+    'Software Factory',
+    'Business Intelligence',
+    'Web Development',
+    'Mobile Apps'
   ];
 
   // === Abrir el popup sin mover la página ===
