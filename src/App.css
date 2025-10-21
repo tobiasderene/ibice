@@ -2,8 +2,8 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overscroll-behavior: none; /* evita el estiramiento al final del scroll */
-  background-color: transparent; /* color de fondo base */
+  overscroll-behavior: none;
+  background-color: #ffffff;
 }
 
 body::before {
@@ -11,12 +11,10 @@ body::before {
   position: fixed;
   inset: 0;
   background: linear-gradient(135deg, #2B5E73, #0a1128);
-  z-index: -999;
+  z-index: -2; /* Más bajo que el fondo del CTA (-1) pero no tan extremo */
 }
 
 #root {
   min-height: 100%;
   overflow-x: hidden;
 }
-
-  
