@@ -24,10 +24,8 @@ export default function HeroCTA({ id }) {
       const windowHeight = window.innerHeight;
       const triggerPoint = windowHeight * 0.5;
 
-      if (rect.top <= triggerPoint && rect.bottom >= 0) {
+      if (rect.top <= triggerPoint) {
         setIsVisible(true);
-      } else {
-        setIsVisible(false);
       }
     };
 
