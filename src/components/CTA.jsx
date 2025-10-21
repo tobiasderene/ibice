@@ -5,29 +5,38 @@ import PopupCTA from './PopupCTA'; // ← Importa aquí
 
 export default function HeroCTA({ id }) {
   const sectionRef = useRef(null);
-  const popupRef = useRef(null); // ← Crea la ref
+  const popupRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [parallax, setParallax] = useState(0);
   const mountainImg = mountainImage;
 
-  // preload imagen
+  // Detecta si es mobile
+  const isMobile = window.innerWidth <= 768;
+
+  // Preload imagen
   useEffect(() => {
     const img = new Image();
     img.src = mountainImg;
     img.onload = () => setLoaded(true);
   }, [mountainImg]);
 
-  // show content después de cargar
+  // Mostrar contenido después de cargar (sin animación en mobile)
   useEffect(() => {
     if (loaded) {
+      if (isMobile) {
+        setShowContent(true);
+        return;
+      }
       const t = setTimeout(() => setShowContent(true), 450);
       return () => clearTimeout(t);
     }
-  }, [loaded]);
+  }, [loaded, isMobile]);
 
-  // scroll -> parallax
+  // Scroll -> parallax (solo en desktop)
   useEffect(() => {
+    if (isMobile) return; // ← No hagas parallax en mobile
+
     let ticking = false;
     const handle = () => {
       if (!sectionRef.current) return;
@@ -54,7 +63,7 @@ export default function HeroCTA({ id }) {
       window.removeEventListener('scroll', handle);
       window.removeEventListener('resize', handle);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
@@ -72,7 +81,7 @@ export default function HeroCTA({ id }) {
         <div
           className="hero-cta-background"
           style={{
-            transform: `translateY(${parallax}px)`,
+            transform: isMobile ? 'none' : `translateY(${parallax}px)`,
             backgroundImage: loaded ? `url(${mountainImg})` : 'none',
             opacity: loaded ? 1 : 0,
           }}
@@ -91,7 +100,7 @@ export default function HeroCTA({ id }) {
           <div className={`hero-cta-buttons ${showContent ? 'visible' : ''}`}>
             <button 
               className="hero-cta-action-button primary"
-              onClick={() => popupRef.current?.openPopup()} // ← Abre el popup
+              onClick={() => popupRef.current?.openPopup()}
             >
               Hablemos
             </button>
@@ -114,7 +123,7 @@ export default function HeroCTA({ id }) {
         </div>
       </div>
 
-      {/* ← Renderiza el popup */}
+      {/* Popup */}
       <PopupCTA ref={popupRef} />
     </>
   );
