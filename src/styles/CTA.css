@@ -1,4 +1,3 @@
-/* --- HERO CTA PARALLAX --- */
 .hero-cta-parallax {
   position: relative;
   width: 100%;
@@ -9,21 +8,12 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0a1128, #2B5E73);
-  transition: background 0.5s ease, transform 1s ease-in-out; /* +transform */
-  will-change: transform;
 }
 
-/* 🔥 Efecto reveal al entrar */
-.hero-cta-parallax.hero-cta-active {
-  transform: translateY(-10vh); /* el bloque se desliza suavemente hacia arriba */
-}
-
-/* --- FONDO Y ANIMACIÓN DE ENTRADA --- */
 .hero-cta-parallax.loaded {
   background: none;
 }
 
-/* Placeholder mientras carga */
 .hero-cta-placeholder {
   position: absolute;
   inset: 0;
@@ -47,24 +37,20 @@
   to { transform: rotate(360deg); }
 }
 
-/* Fondo con efecto parallax + reveal */
 .hero-cta-background {
-  position: absolute;
-  top: -3%;
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 120%;
+  height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
-  will-change: transform;
-  transition: transform 0.2s ease-out, opacity 0.6s ease;
+  transition: opacity 0.6s ease;
   pointer-events: none;
-  background-attachment: fixed; /* 🔥 fondo estático */
 }
 
-/* Overlay */
 .hero-cta-overlay {
   position: absolute;
   top: 0;
@@ -72,17 +58,9 @@
   width: 100%;
   height: 100%;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+  background: rgba(0, 0, 0, 0.4);
 }
 
-/* Cuando entra en pantalla, el overlay se suaviza */
-.hero-cta-parallax.hero-cta-active .hero-cta-overlay {
-  opacity: 1;
-}
-
-/* Contenido centrado */
 .hero-cta-content {
   position: relative;
   z-index: 3;
@@ -95,18 +73,8 @@
   gap: 3rem;
   padding: 4rem 0;
   color: #F8F9FA;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease, transform 1s ease;
 }
 
-/* ✨ Cinematic fade-in al activarse */
-.hero-cta-parallax.hero-cta-active .hero-cta-content {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Título y texto */
 .hero-cta-title {
   font-family: 'Inter', 'Poppins', 'Manrope', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
@@ -127,20 +95,11 @@
   opacity: 0.95;
 }
 
-/* Botones */
 .hero-cta-buttons {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
-}
-
-.hero-cta-parallax.hero-cta-active .hero-cta-buttons {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .hero-cta-action-button {
@@ -184,20 +143,11 @@
   box-shadow: 0 6px 25px rgba(248, 249, 250, 0.3);
 }
 
-/* Info */
 .hero-cta-info {
   display: flex;
   justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
-}
-
-.hero-cta-parallax.hero-cta-active .hero-cta-info {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .hero-info-item {
@@ -223,64 +173,63 @@
   text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
-  .hero-cta-content { width: calc(100% - 6rem); gap: 2.5rem; }
-  .hero-cta-info { gap: 2rem; }
+  .hero-cta-content { 
+    width: calc(100% - 6rem); 
+    gap: 2.5rem; 
+  }
+  .hero-cta-info { 
+    gap: 2rem; 
+  }
 }
 
 @media (max-width: 768px) {
-  .hero-cta-content { width: calc(100% - 3rem); gap: 2rem; padding: 3rem 0; }
-  .hero-cta-title { font-size: clamp(2rem, 8vw, 3rem); }
-  .hero-cta-subtitle { font-size: clamp(1rem, 3vw, 1.25rem); }
-  .hero-cta-buttons { gap: 1rem; }
-  .hero-cta-action-button { padding: 0.875rem 2rem; font-size: 1rem; }
-  .hero-cta-info { gap: 1.5rem; }
+  .hero-cta-content { 
+    width: calc(100% - 3rem); 
+    gap: 2rem; 
+    padding: 3rem 0; 
+  }
+  .hero-cta-title { 
+    font-size: clamp(2rem, 8vw, 3rem); 
+  }
+  .hero-cta-subtitle { 
+    font-size: clamp(1rem, 3vw, 1.25rem); 
+  }
+  .hero-cta-buttons { 
+    gap: 1rem; 
+  }
+  .hero-cta-action-button { 
+    padding: 0.875rem 2rem; 
+    font-size: 1rem; 
+  }
+  .hero-cta-info { 
+    gap: 1.5rem; 
+  }
 }
 
 @media (max-width: 480px) {
-  .hero-cta-content { width: calc(100% - 2rem); gap: 1.5rem; padding: 2rem 0; }
-  .hero-cta-buttons { flex-direction: column; width: 100%; align-items: center; }
-  .hero-cta-action-button { width: 100%; max-width: 300px; }
-  .hero-cta-info { flex-direction: column; gap: 1.5rem; }
+  .hero-cta-content { 
+    width: calc(100% - 2rem); 
+    gap: 1.5rem; 
+    padding: 2rem 0; 
+  }
+  .hero-cta-buttons { 
+    flex-direction: column; 
+    width: 100%; 
+    align-items: center; 
+  }
+  .hero-cta-action-button { 
+    width: 100%; 
+    max-width: 300px; 
+  }
+  .hero-cta-info { 
+    flex-direction: column; 
+    gap: 1.5rem; 
+  }
 }
 
-/* Fix mobile */
-html, body { overflow-x: hidden; margin: 0; padding: 0; }
-
-/* === DESACTIVAR ANIMACIONES EN MOBILE === */
-@media (max-width: 768px) {
-  .hero-cta-parallax *,
-  .hero-cta-background,
-  .hero-cta-content,
-  .hero-cta-buttons,
-  .hero-cta-info,
-  .hero-cta-placeholder .spinner,
-  .hero-cta-action-button,
-  .hero-cta-action-button.primary,
-  .hero-cta-action-button.secondary {
-    transition: none !important;
-    animation: none !important;
-    transform: none !important;
-  }
-
-  .hero-cta-background {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transform: none !important;
-    background-attachment: scroll !important;
-  }
-
-  .hero-cta-content,
-  .hero-cta-buttons,
-  .hero-cta-info {
-    opacity: 1 !important;
-  }
-
-  .hero-cta-action-button:hover {
-    transform: none !important;
-    box-shadow: none !important;
-    background: inherit !important;
-  }
+html, body { 
+  overflow-x: hidden; 
+  margin: 0; 
+  padding: 0; 
 }
