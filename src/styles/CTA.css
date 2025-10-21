@@ -47,6 +47,9 @@
   pointer-events: none;
 }
 
+.hero-cta-background.visible {
+  opacity: 1;
+}
 
 .hero-cta-overlay {
   position: absolute;
