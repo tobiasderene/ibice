@@ -22,7 +22,7 @@
   position: relative;
   background: linear-gradient(
     to bottom,
-    rgba(248, 249, 250, 0.8) 30%,
+    rgba(248, 249, 250, 1) 30%,
     #2B5E73 90%
   );
   transition: background 0.8s ease-in-out;
