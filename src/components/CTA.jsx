@@ -7,6 +7,7 @@ export default function HeroCTA({ id }) {
   const sectionRef = useRef(null);
   const popupRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const mountainImg = mountainImage;
 
   useEffect(() => {
@@ -14,6 +15,27 @@ export default function HeroCTA({ id }) {
     img.src = mountainImg;
     img.onload = () => setLoaded(true);
   }, [mountainImg]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const triggerPoint = windowHeight * 0.5;
+
+      if (rect.top <= triggerPoint && rect.bottom >= 0) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -29,10 +51,10 @@ export default function HeroCTA({ id }) {
         )}
 
         <div
-          className="hero-cta-background"
+          className={`hero-cta-background ${isVisible ? 'visible' : ''}`}
           style={{
             backgroundImage: loaded ? `url(${mountainImg})` : 'none',
-            opacity: loaded ? 1 : 0,
+            opacity: loaded && isVisible ? 1 : 0,
           }}
         />
 
