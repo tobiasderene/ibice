@@ -230,3 +230,39 @@
 
 /* Fix mobile */
 html, body { overflow-x: hidden; margin: 0; padding: 0; }
+
+/* === DESACTIVAR ANIMACIONES EN MOBILE === */
+@media (max-width: 768px) {
+  .hero-cta-parallax *,
+  .hero-cta-background,
+  .hero-cta-content,
+  .hero-cta-buttons,
+  .hero-cta-info,
+  .hero-cta-placeholder .spinner,
+  .hero-cta-action-button,
+  .hero-cta-action-button.primary,
+  .hero-cta-action-button.secondary {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .hero-cta-background {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transform: none !important;
+  }
+
+  .hero-cta-content,
+  .hero-cta-buttons,
+  .hero-cta-info {
+    opacity: 1 !important;
+  }
+
+  .hero-cta-action-button:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    background: inherit !important;
+  }
+}
