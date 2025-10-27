@@ -46,8 +46,6 @@ export default function Hero({ id }) {
         }}
       />
       
-      <div className="hero-overlay" />
-      
       <div className="hero-content">
         <h1 className="hero-slogan-container">
           <span className={`hero-slogan first ${showJuntos ? 'visible' : ''}`}>
