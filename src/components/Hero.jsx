@@ -5,53 +5,43 @@ import ibicesImg from '../assets/ibices.jpg';
 
 export default function Hero({ id }) {
   const sectionRef = useRef(null);
-  const backgroundRef = useRef(null);
-  const [showJuntos, setShowJuntos] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [showText, setShowText] = useState(false);
 
   // preload imagen
   useEffect(() => {
     const img = new Image();
     img.src = ibicesImg;
-    img.onload = () => {
-      console.log('✅ Imagen cargada');
-      setLoaded(true);
-      setTimeout(() => {
-        setVisible(true);
-        console.log('✅ Visible activado');
-      }, 100);
-    };
+    img.onload = () => setLoaded(true);
   }, []);
 
-  // animación de texto
-  useEffect(() => {
-    if (loaded) {
-      const timer = setTimeout(() => setShowJuntos(true), 500);
-      return () => clearTimeout(timer);
-    }
-  }, [loaded]);
-
-  // Detectar cuando el hero sale del viewport
+  // detectar cuando entra al viewport
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current || !backgroundRef.current) return;
-      
+      if (!sectionRef.current) return;
+
       const rect = sectionRef.current.getBoundingClientRect();
-      const isInView = rect.bottom > 0;
-      
-      if (isInView) {
-        backgroundRef.current.classList.remove('hidden');
-      } else {
-        backgroundRef.current.classList.add('hidden');
+      const windowHeight = window.innerHeight;
+
+      if (rect.top <= windowHeight) {
+        setIsVisible(true);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [loaded]);
+  }, []);
+
+  // animar texto después de visible
+  useEffect(() => {
+    if (isVisible && loaded) {
+      const timer = setTimeout(() => setShowText(true), 400);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, loaded]);
 
   return (
     <div
@@ -59,30 +49,29 @@ export default function Hero({ id }) {
       ref={sectionRef}
       className={`hero-parallax ${loaded ? 'loaded' : ''}`}
     >
-      {/* 👇 Solo muestra el placeholder si NO ha cargado */}
+      {/* Placeholder mientras carga */}
       {!loaded && (
         <div className="hero-placeholder">
           <div className="spinner" />
         </div>
       )}
-      
-      {/* 👇 Solo muestra el background si YA cargó */}
-      {loaded && (
-        <div
-          ref={backgroundRef}
-          className={`hero-background ${visible ? 'visible' : ''}`}
-          style={{
-            backgroundImage: `url(${ibicesImg})`,
-          }}
-        />
-      )}
-      
+
+      {/* Background */}
+      <div
+        className={`hero-background ${isVisible ? 'visible' : ''}`}
+        style={{
+          backgroundImage: loaded ? `url(${ibicesImg})` : 'none',
+          opacity: loaded && isVisible ? 1 : 0,
+        }}
+      />
+
+      {/* Contenido */}
       <div className="hero-content">
         <h1 className="hero-slogan-container">
-          <span className={`hero-slogan first ${showJuntos ? 'visible' : ''}`}>
+          <span className={`hero-slogan first ${showText ? 'visible' : ''}`}>
             Alcancemos la cima.
           </span>
-          <span className={`hero-slogan second ${showJuntos ? 'visible' : ''}`}>
+          <span className={`hero-slogan second ${showText ? 'visible' : ''}`}>
             Juntos.
           </span>
         </h1>
