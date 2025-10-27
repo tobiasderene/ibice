@@ -3,7 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
-  background-color: #0a1128; /* 👈 color de respaldo */
+  background-color: transparent; /* 👈 color de respaldo */
 }
 
 /*body::before {
