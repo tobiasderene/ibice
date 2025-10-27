@@ -3,16 +3,16 @@ html, body {
   margin: 0;
   padding: 0;
   overscroll-behavior: none;
-  background-color: #ffffff;
+  background-color: #0a1128; /* 👈 color de respaldo */
 }
 
-body::before {
+/*body::before {
   content: "";
   position: fixed;
   inset: 0;
   background: linear-gradient(135deg, #2B5E73, #0a1128);
-  z-index: -3; /* Más bajo que el fondo del CTA (-1) pero no tan extremo */
-}
+  z-index: -3; 
+}*/
 
 #root {
   min-height: 100%;
