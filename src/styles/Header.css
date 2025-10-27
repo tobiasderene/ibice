@@ -26,17 +26,27 @@
   position: relative;
 }
 
-.logo h1 {
-  margin: 0;
-  font-size: clamp(1.3rem, 3vw, 2rem);
-  color: #F8F9FA;
-  font-weight: 700;
-  transition: color 0.3s ease;
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-.header.scrolled .logo h1 {
-  color: #2B5E73;
+.logo-img {
+  height: 48px;
+  width: auto;
+  transition: all 0.3s ease;
+  filter: brightness(0) invert(1); /* 👈 Blanco por defecto sobre fondo oscuro */
 }
+
+.header.scrolled .logo-img {
+  filter: none; /* 👈 Vuelve a los colores originales sobre fondo claro */
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
 
 .nav {
   display: flex;
