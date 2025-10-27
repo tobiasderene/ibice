@@ -15,11 +15,11 @@ export default function Hero({ id }) {
     const img = new Image();
     img.src = ibicesImg;
     img.onload = () => {
-      console.log('✅ Imagen cargada'); // 👈 agrega esto
+      console.log('✅ Imagen cargada');
       setLoaded(true);
       setTimeout(() => {
         setVisible(true);
-        console.log('✅ Visible activado'); // 👈 y esto
+        console.log('✅ Visible activado');
       }, 100);
     };
   }, []);
@@ -32,7 +32,7 @@ export default function Hero({ id }) {
     }
   }, [loaded]);
 
-  // 👇 Detectar cuando el hero sale del viewport
+  // Detectar cuando el hero sale del viewport
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current || !backgroundRef.current) return;
@@ -48,7 +48,7 @@ export default function Hero({ id }) {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Ejecutar al inicio
+    handleScroll();
     
     return () => window.removeEventListener('scroll', handleScroll);
   }, [loaded]);
@@ -59,19 +59,23 @@ export default function Hero({ id }) {
       ref={sectionRef}
       className={`hero-parallax ${loaded ? 'loaded' : ''}`}
     >
+      {/* 👇 Solo muestra el placeholder si NO ha cargado */}
       {!loaded && (
         <div className="hero-placeholder">
           <div className="spinner" />
         </div>
       )}
       
-      <div
-        ref={backgroundRef}
-        className={`hero-background ${visible ? 'visible' : ''}`}
-        style={{
-          backgroundImage: loaded ? `url(${ibicesImg})` : 'none',
-        }}
-      />
+      {/* 👇 Solo muestra el background si YA cargó */}
+      {loaded && (
+        <div
+          ref={backgroundRef}
+          className={`hero-background ${visible ? 'visible' : ''}`}
+          style={{
+            backgroundImage: `url(${ibicesImg})`,
+          }}
+        />
+      )}
       
       <div className="hero-overlay" />
       
