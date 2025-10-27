@@ -34,20 +34,20 @@
   to { transform: rotate(360deg); }
 }
 
+/* 👇 ESTÁTICO - igual que tu CTA */
 .hero-background {
-  position: absolute; /* 👈 CAMBIO: de fixed a absolute */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 1; /* 👈 CAMBIO: de -1 a 1 */
+  z-index: -1; /* 👈 detrás de todo */
   opacity: 0;
   transition: opacity 1s ease;
   pointer-events: none;
-  will-change: transform; /* 👈 optimización para parallax */
 }
 
 .hero-background.visible {
@@ -57,6 +57,7 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
+  background: rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
 
@@ -70,7 +71,6 @@
   max-width: 800px;
   width: calc(100% - 16%);
   text-align: left;
-  will-change: transform; /* 👈 optimización */
 }
 
 .hero-slogan-container {
@@ -94,7 +94,7 @@
   overflow-wrap: break-word;
 }
 
-/* Estado inicial - sin transform para evitar conflictos */
+/* Estado inicial */
 .hero-slogan.first {
   font-size: clamp(15px, 7vw, 55px);
   color: #F8F9FA;
@@ -151,7 +151,7 @@
 @media (max-width: 768px) {
   .hero-content {
     left: 50%;
-    transform: translate(-50%, -50%); /* 👈 CORREGIDO */
+    transform: translate(-50%, -50%);
     width: calc(100% - 10%);
     max-width: none;
     text-align: center;
@@ -167,7 +167,7 @@
 @media (max-width: 480px) {
   .hero-content {
     left: 50%;
-    transform: translate(-50%, -50%); /* 👈 CORREGIDO */
+    transform: translate(-50%, -50%);
     width: calc(100% - 8%);
   }
   
