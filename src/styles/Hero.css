@@ -2,7 +2,7 @@
 .hero-parallax {
   position: relative;
   width: 100%;
-  min-height: 100vh; /* altura exacta viewport incluyendo barras */
+  min-height: 100vh;
   height: 100vh;
   overflow: hidden;
   background: linear-gradient(135deg, #2B5E73, #0a1128);
@@ -35,28 +35,29 @@
 }
 
 .hero-background {
-  position: fixed; /* 👈 igual que el CTA */
+  position: absolute; /* 👈 CAMBIO: de fixed a absolute */
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: 1; /* 👈 CAMBIO: de -1 a 1 */
   opacity: 0;
-  transition: opacity 1s ease; /* 👈 transicion suave */
+  transition: opacity 1s ease;
   pointer-events: none;
+  will-change: transform; /* 👈 optimización para parallax */
 }
 
 .hero-background.visible {
-  opacity: 1; /* 👈 aparece cuando entra al viewport */
+  opacity: 1;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* 👈 overlay similar al CTA */
+  background: rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
 
@@ -68,15 +69,16 @@
   transform: translateY(-50%);
   z-index: 3;
   max-width: 800px;
-  width: calc(100% - 16%); /* Previene desbordamiento horizontal */
+  width: calc(100% - 16%);
   text-align: left;
+  will-change: transform; /* 👈 optimización */
 }
 
 .hero-slogan-container {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  overflow: hidden; /* Previene desbordamiento */
+  overflow: hidden;
 }
 
 .hero-slogan.first,
@@ -89,27 +91,24 @@
   display: inline-block;
   text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
   opacity: 0;
-  transition: opacity 0.5s ease;
-  word-wrap: break-word; /* Rompe palabras largas si es necesario */
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
-/* Animación desde la izquierda */
+/* Estado inicial - sin transform para evitar conflictos */
 .hero-slogan.first {
   font-size: clamp(15px, 7vw, 55px);
   color: #F8F9FA;
-  transform: translateX(-20px);
 }
 
-.hero-slogan.first.visible {
-  animation: slideFromLeft 1s ease forwards;
-}
-
-/* Animación desde la derecha */
 .hero-slogan.second {
   font-size: clamp(15px, 7vw, 55px);
   color: #F8F9FA;
-  transform: translateX(20px);
+}
+
+/* Animaciones activadas */
+.hero-slogan.first.visible {
+  animation: slideFromLeft 1s ease forwards;
 }
 
 .hero-slogan.second.visible {
@@ -144,6 +143,7 @@
 .mouse {
   border: 3px solid rgba(255, 255, 255, 0.7);
 }
+
 .wheel {
   background: #D5CBB2;
 }
@@ -152,29 +152,29 @@
 @media (max-width: 768px) {
   .hero-content {
     left: 50%;
-    right: 50%; /* Añade margen derecho */
-    width: calc(100% - 10%); /* Ajusta el ancho total */
+    transform: translate(-50%, -50%); /* 👈 CORREGIDO */
+    width: calc(100% - 10%);
     max-width: none;
     text-align: center;
   }
-
+  
   .hero-slogan.first,
   .hero-slogan.second {
     font-size: clamp(28px, 8vw, 45px);
-    letter-spacing: -0.5px; /* Reduce el espaciado en mobile */
+    letter-spacing: -0.5px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-content {
-    left: 4%;
-    right: 4%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 👈 CORREGIDO */
     width: calc(100% - 8%);
   }
   
   .hero-slogan.first,
   .hero-slogan.second {
     font-size: clamp(24px, 9vw, 35px);
-    line-height: 1.15; /* Aumenta un poco el line-height para mejor legibilidad */
+    line-height: 1.15;
   }
 }
