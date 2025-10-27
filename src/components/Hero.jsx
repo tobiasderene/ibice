@@ -15,8 +15,12 @@ export default function Hero({ id }) {
     const img = new Image();
     img.src = ibicesImg;
     img.onload = () => {
+      console.log('✅ Imagen cargada'); // 👈 agrega esto
       setLoaded(true);
-      setTimeout(() => setVisible(true), 100);
+      setTimeout(() => {
+        setVisible(true);
+        console.log('✅ Visible activado'); // 👈 y esto
+      }, 100);
     };
   }, []);
 
