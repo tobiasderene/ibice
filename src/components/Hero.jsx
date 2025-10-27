@@ -9,37 +9,40 @@ export default function Hero({ id }) {
   const [isVisible, setIsVisible] = useState(false);
   const [showText, setShowText] = useState(false);
 
-  // preload imagen
+  // Preload de imagen
   useEffect(() => {
     const img = new Image();
     img.src = ibicesImg;
     img.onload = () => setLoaded(true);
   }, []);
 
-  // detectar cuando entra al viewport
+  // Detectar entrada y salida del viewport
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
-
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      if (rect.top <= windowHeight) {
+      // entra o sale del viewport
+      if (rect.top < windowHeight && rect.bottom > 0) {
         setIsVisible(true);
+      } else {
+        setIsVisible(false);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // animar texto después de visible
+  // Animar texto cuando se hace visible
   useEffect(() => {
     if (isVisible && loaded) {
-      const timer = setTimeout(() => setShowText(true), 400);
+      const timer = setTimeout(() => setShowText(true), 300);
       return () => clearTimeout(timer);
+    } else {
+      setShowText(false);
     }
   }, [isVisible, loaded]);
 
@@ -49,14 +52,14 @@ export default function Hero({ id }) {
       ref={sectionRef}
       className={`hero-parallax ${loaded ? 'loaded' : ''}`}
     >
-      {/* Placeholder mientras carga */}
+      {/* Placeholder */}
       {!loaded && (
         <div className="hero-placeholder">
           <div className="spinner" />
         </div>
       )}
 
-      {/* Background */}
+      {/* Fondo */}
       <div
         className={`hero-background ${isVisible ? 'visible' : ''}`}
         style={{
@@ -66,7 +69,7 @@ export default function Hero({ id }) {
       />
 
       {/* Contenido */}
-      <div className="hero-content">
+      <div className={`hero-content ${isVisible ? 'visible' : ''}`}>
         <h1 className="hero-slogan-container">
           <span className={`hero-slogan first ${showText ? 'visible' : ''}`}>
             Alcancemos la cima.
