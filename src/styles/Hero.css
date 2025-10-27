@@ -45,7 +45,7 @@
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1; /* 👈 detrás de todo */
-  opacity: 0;
+  opacity: 1;
   transition: opacity 1s ease;
   pointer-events: none;
 }
