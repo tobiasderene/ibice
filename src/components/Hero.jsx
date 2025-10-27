@@ -5,6 +5,7 @@ import ibicesImg from '../assets/ibices.jpg';
 
 export default function Hero({ id }) {
   const sectionRef = useRef(null);
+  const backgroundRef = useRef(null);
   const [showJuntos, setShowJuntos] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -27,6 +28,27 @@ export default function Hero({ id }) {
     }
   }, [loaded]);
 
+  // 👇 Detectar cuando el hero sale del viewport
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current || !backgroundRef.current) return;
+      
+      const rect = sectionRef.current.getBoundingClientRect();
+      const isInView = rect.bottom > 0;
+      
+      if (isInView) {
+        backgroundRef.current.classList.remove('hidden');
+      } else {
+        backgroundRef.current.classList.add('hidden');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Ejecutar al inicio
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loaded]);
+
   return (
     <div
       id={id}
@@ -40,11 +62,14 @@ export default function Hero({ id }) {
       )}
       
       <div
+        ref={backgroundRef}
         className={`hero-background ${visible ? 'visible' : ''}`}
         style={{
           backgroundImage: loaded ? `url(${ibicesImg})` : 'none',
         }}
       />
+      
+      <div className="hero-overlay" />
       
       <div className="hero-content">
         <h1 className="hero-slogan-container">
