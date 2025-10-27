@@ -153,6 +153,9 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero-background {
+    position: fixed;
+  }
   .hero-content {
     left: 50%;
     transform: translate(-50%, -50%);
@@ -169,6 +172,10 @@
 }
 
 @media (max-width: 480px) {
+  .hero-background {
+    position: fixed;
+  }
+  
   .hero-content {
     left: 50%;
     transform: translate(-50%, -50%);
