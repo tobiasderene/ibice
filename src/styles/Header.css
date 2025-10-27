@@ -36,7 +36,7 @@
   height: 48px;
   width: auto;
   transition: all 0.3s ease;
-  height: clamp(32px, 6vw, 52px);
+  height: clamp(28px, 6vw, 52px);
   filter: brightness(0) invert(1); /* 👈 Blanco por defecto sobre fondo oscuro */
 }
 
