@@ -11,7 +11,7 @@ body::before {
   position: fixed;
   inset: 0;
   background: linear-gradient(135deg, #2B5E73, #0a1128);
-  z-index: -2; /* Más bajo que el fondo del CTA (-1) pero no tan extremo */
+  z-index: -3; /* Más bajo que el fondo del CTA (-1) pero no tan extremo */
 }
 
 #root {
