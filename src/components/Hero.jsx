@@ -39,7 +39,6 @@ export default function Hero({ id }) {
         </div>
       )}
       
-      {/* 👇 ELIMINADO el style con transform */}
       <div
         className={`hero-background ${visible ? 'visible' : ''}`}
         style={{
@@ -49,7 +48,6 @@ export default function Hero({ id }) {
       
       <div className="hero-overlay" />
       
-      {/* 👇 ELIMINADO el style con transform */}
       <div className="hero-content">
         <h1 className="hero-slogan-container">
           <span className={`hero-slogan first ${showJuntos ? 'visible' : ''}`}>
