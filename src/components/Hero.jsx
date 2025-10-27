@@ -5,10 +5,9 @@ import ibicesImg from '../assets/ibices.jpg';
 
 export default function Hero({ id }) {
   const sectionRef = useRef(null);
-  const [scrollY, setScrollY] = useState(0);
   const [showJuntos, setShowJuntos] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [visible, setVisible] = useState(false); // 👈 fade-in inicial
+  const [visible, setVisible] = useState(false);
 
   // preload imagen
   useEffect(() => {
@@ -16,15 +15,8 @@ export default function Hero({ id }) {
     img.src = ibicesImg;
     img.onload = () => {
       setLoaded(true);
-      setTimeout(() => setVisible(true), 100); // 👈 pequeño delay para la transición
+      setTimeout(() => setVisible(true), 100);
     };
-  }, []);
-
-  // movimiento parallax
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // animación de texto
@@ -46,21 +38,19 @@ export default function Hero({ id }) {
           <div className="spinner" />
         </div>
       )}
-
+      
+      {/* 👇 SIN transform inline */}
       <div
         className={`hero-background ${visible ? 'visible' : ''}`}
         style={{
-          transform: `translateY(${scrollY * 0.3}px)`,
           backgroundImage: loaded ? `url(${ibicesImg})` : 'none',
         }}
       />
-
+      
       <div className="hero-overlay" />
-
-      <div
-        className="hero-content"
-        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
-      >
+      
+      {/* 👇 SIN transform inline */}
+      <div className="hero-content">
         <h1 className="hero-slogan-container">
           <span className={`hero-slogan first ${showJuntos ? 'visible' : ''}`}>
             Alcancemos la cima.
